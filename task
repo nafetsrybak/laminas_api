@@ -1,0 +1,38 @@
+Vytvoriť backend v Symfony alebo inom podobnom PHP frameworku, pričom je potrebné implementovať nasledujúce endpointy:
+
+###
+POST /api/customer - vytvorí zákazníka s menom, priezviskom, emailom a telefónnym
+číslom. Email musí byť unikátny pre kažého zákazníka. Každý zákazník má aj priradenú
+zľavu, ktorá sa uplatňuje na jeho objednávky.
+
+###
+GET /api/customer - získa vyfiltrovaný zoznam zákazníkov podľa čiastočnej zhody
+mena, priezviska a dátumu posledného nákupu
+
+###
+POST /api/product - vytvorí produkt s názvom, produktovým číslom, obrázkom a cenou
+
+###
+GET /api/product - získa vyfiltrovaný zoznam produktov podľa kódu a/alebo podľa
+rozsahu ceny od a do
+
+###
+PATCH /api/product - aktualizuje názov, cenu produktu alebo jeho obrázok
+
+##
+DELETE /api/product - vymaže produkt
+
+###
+POST /api/order - vytovrí objednávku so zákazníkom a zoznamom produktov a ich
+množstvom
+
+###
+PUT /api/order - aktualizuje objednávku
+
+###
+GET /api/order - získa vyfiltrovaný zoznam objednávok podľa dátumového rozsahu
+realizácie objednávky alebo podľa mena zákazníka
+
+###
+GET /api/pdf/{orderId} - vygeneruje PDF objednávky, kde budú informácie o
+zákazníkovi, zoznam produktov s cenami a celková cena

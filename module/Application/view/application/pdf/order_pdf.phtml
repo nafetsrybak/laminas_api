@@ -1,0 +1,97 @@
+<?php
+
+    use Application\Entity\OrderEntity;
+    use Application\Manager\OrderManager;
+
+    /** @var OrderEntity $order */
+
+    $customer = $order->getCustomer();
+
+    /** @var OrderManager $orderManager */
+    $orderManager = $this->orderManager();
+?>
+
+<h3>Customer</h3>
+<p>
+    Name: <?= $customer->getName() ?>
+</p>
+<p>
+    Surname: <?= $customer->getSurname() ?>
+</p>
+<p>
+    Discount: <?= $customer->getDiscount() ?>%
+</p>
+
+<h3>Order</h3>
+<table>
+    <tr>
+        <th>
+            Product name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+    </tr>
+
+    <?php foreach ($order->getOrderItems() as $orderItem): ?>
+        <tr>
+            <td>
+                <?= $orderItem->getProductName() ?>
+            </td>
+            <td>
+                <?= $orderItem->getQuantity() ?>
+            </td>
+            <td>
+                <?= $orderManager->getOrderItemPrice($orderItem) ?> €
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<div class="order_info_item">
+    <span class="order_info_item_title">Subtotal:</span>
+    <span>
+        <?= $this->round(
+            $orderManager->getSubTotalOrderPrice($order)
+        ) ?> €
+    </span>
+</div>
+<div class="order_info_item">
+    <span class="order_info_item_title">Discount sum:</span>
+    <span>
+        <?= $this->round(
+            $orderManager->getOrderDiscountSum($order)
+        ) ?> €
+    </span>
+</div>
+<div class="order_info_item">
+    <span class="order_info_item_title">Total:</span>
+    <span>
+        <?= $this->round(
+            $orderManager->getTotalOrderPrice($order)
+        ) ?> €
+    </span>
+</div>
+
+<style>
+    table {
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    th, td {
+        border:1px solid black;
+    }
+
+    .order_info_item {
+        text-align: right;
+        margin-top: 10px;
+    }
+
+    .order_info_item_title {
+        font-weight: bold;
+    }
+</style>

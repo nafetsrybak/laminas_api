@@ -1,0 +1,13 @@
+.vagrant/
+vendor/
+config/development.config.php
+data/cache/*
+!data/doctrine/Migrations/*
+!data/cache/.gitkeep
+
+phpunit.xml
+.phpunit.result.cache
+.vscode/
+
+public/img/*
+!public/img/.gitkeep
